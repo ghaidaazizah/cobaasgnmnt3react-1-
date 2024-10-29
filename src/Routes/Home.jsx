@@ -1,22 +1,20 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const goToStudents = () => {
-    navigate('/students');
+  const handleButton = () => {
+    navigate("/student");
   };
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <button 
-        onClick={goToStudents} 
-        data-testid="student-btn"
-      >
-        All Students
+    <>
+      <h1>Home</h1>
+      <p>Welcome to the Home page</p>
+      <button data-testid='student-btn' onClick={handleButton}>
+        All Student
       </button>
-    </div>
+    </>
   );
 };
 

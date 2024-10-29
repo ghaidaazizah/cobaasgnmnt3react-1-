@@ -1,19 +1,35 @@
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const NavBar = () => {
   const navigate = useNavigate();
+  const [path, setPath] = useState(null);
 
-  const handleNavigation = (path) => {
-    navigate(path);
+  useEffect(() => {
+    if (path) {
+      navigate(path);
+    }
+  }, [path, navigate]);
+
+  const handleNavigation = (newPath) => {
+    setPath(newPath);
   };
 
   return (
-    <nav>
-      <button onClick={() => handleNavigation('/')}>Home</button>
-      <button onClick={() => handleNavigation('/students')}>Students</button>
-      <button onClick={() => handleNavigation('/add-student')}>Add Student</button>
-    </nav>
+    <header>
+      <h1 onClick={() => handleNavigation("/")} data-testid='home-page'>
+        Student Portal
+      </h1>
+      <section>
+        <button onClick={() => handleNavigation("/student")} data-testid='student-page'>
+          All Student
+        </button>
+        <button onClick={() => handleNavigation("/add")} data-testid='add-page'>
+          Add Student
+        </button>
+      </section>
+    </header>
   );
 };
 
-export default Navbar;
+export default NavBar;
